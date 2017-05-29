@@ -1,0 +1,47 @@
+package chapter1;
+
+import java.util.Scanner;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
+public class Excerice {
+
+	public static void main(String[] args) {
+		Queue<Integer> num = new Queue<Integer>();
+		Stack<String> ops = new Stack<String>();
+		Stack<String> result = new Stack<String>();
+		Scanner in = new Scanner(System.in);
+		String s1 = in.nextLine();
+		char[] c1 = s1.toCharArray();
+		String[] s = new String[c1.length];
+		for(int i=0;i<s1.length();i++){
+			s[i]=String.valueOf(c1[i]);
+		}
+		for(int i=0;i<s.length;i++){
+			String s2 = s[i];
+			if(s2.equals("+")){
+				ops.push(s2);
+			}else if(s2.equals("-")){
+				ops.push(s2);
+			}else if(s2.equals("*")){
+				ops.push(s2);
+			}else if(s2.equals("/")){
+				ops.push(s2);
+			}else if(s2.equals(")")){
+				if(!num.isEmpty()){
+				result.push("("+num.dequeue()+ops.pop()+num.dequeue()+s2);
+				}else{
+					String r1 = result.pop();
+					String r2 = result.pop();
+					result.push("("+r2+ops.pop()+r1+s2);
+				}
+			}else{
+				num.enqueue(Integer.valueOf(s2));
+			}
+		}
+		System.out.println(result.pop());		
+			}
+
+}
